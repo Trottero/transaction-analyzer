@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import './styles/index.scss';
 
@@ -20,4 +21,10 @@ const store = createStore(
 );
 
 /* eslint-disable-next-line no-undef */
-ReactDOM.render(<App store={store} />, document.getElementById('root'));
+render(
+  (
+    <BrowserRouter>
+      <App store={store} />
+    </BrowserRouter>
+  ), document.getElementById('root'),
+);

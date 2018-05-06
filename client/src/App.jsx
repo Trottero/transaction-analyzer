@@ -1,20 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Home from './views/home/Home';
 import Layout from './views/shared/Layout';
+import Main from './views/shared/Main';
 
 const App = ({ store }) => (
   <Provider store={store}>
-    <Router>
-      <Layout>
-        <Switch>
-          <Route path="/" component={Home} />
-        </Switch>
-      </Layout>
-    </Router>
+    <div className="row">
+      <Layout />
+      <Main />
+    </div>
   </Provider>
 );
 
