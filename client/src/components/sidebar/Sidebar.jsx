@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from '../button/Button';
 
 import classes from './Sidebar.scss';
 
 const Sidebar = () => (
-  <div className={classes.sidebar} className="col-md-2">
+  <div className="col-md-2">
     <nav id="sidebar">
       <div className="sidebar-header">
-        <h4><Link to="/" className={classes.title}>Transaction Analyzer</Link></h4>
+        <h4><Link to="/" href="/" className={classes.title}>Transaction Analyzer</Link></h4>
       </div>
       <ul className="list-unstyled components">
         {/* <p>Dummy Heading</p> */}
@@ -27,13 +26,10 @@ const Sidebar = () => (
           </ul>
         </li> */}
         <li>
-          <Link to="/transactions" className={classes.title}>Transactions</Link>
+          <Link to="/transactions" href="/transactions" className={classes.title}>Transactions</Link>
         </li>
         <li>
-          <a href="#">Portfolio</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
+          <a href="/">Contact</a>
         </li>
       </ul>
     </nav>

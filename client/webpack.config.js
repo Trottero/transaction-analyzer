@@ -11,6 +11,9 @@ module.exports = (_, { mode }) => {
   const config = isDevBuild ? dev : prod;
 
   return merge({
+    node: {
+      fs: 'empty'
+    },
     entry: './client/src/index.jsx',
     output: {
       path: `${__dirname}/dist`,
