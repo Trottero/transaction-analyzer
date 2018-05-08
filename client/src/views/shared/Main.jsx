@@ -4,7 +4,7 @@ import Home from '../home/Home';
 import Transactions from '../transaction/Transactions';
 
 const Main = () => (
-  <div className="col-md-10">
+  <div className="">
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/transactions" component={Transactions} />

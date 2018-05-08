@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import classes from './Sidebar.scss';
 
 const Sidebar = () => (
-  <div className="col-md-2">
+  <div style={{ paddingLeft: 0 }}>
     <nav id="sidebar">
       <div className="sidebar-header">
         <h4><Link to="/" href="/" className={classes.title}>Transaction Analyzer</Link></h4>

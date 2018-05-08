@@ -58,10 +58,19 @@ a, a:hover, a:focus {
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    overflow-x: hidden;
 }
 
+.container-fluid {
+    width: calc(100% - 250px) !important;
+    margin-left: 250px;
+}
+.row {
+    width: calc(100% - 250px) !important;
+    padding-left: 10px;
+}
 #sidebar.active {
-    margin-left: -250px;
+    /* margin-left: -250px; */
 }
 
 #sidebar .sidebar-header {
