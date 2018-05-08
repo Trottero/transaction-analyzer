@@ -6,7 +6,7 @@ class Home extends React.Component {
     super(props);
   }
 
-  generateGraph() {
+  componentDidMount() {
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
       type: 'doughnut',
@@ -43,9 +43,8 @@ class Home extends React.Component {
     return (
       <div>
         <h1>Dashboard</h1>
-        <button onClick={this.generateGraph}>click</button>
+        {/* <button onClick={this.generateGraph}>click</button> */}
         <canvas id="myChart" width="400" height="400" />
-        <span onLoad={this.generateGraph} />
       </div>
     );
   }

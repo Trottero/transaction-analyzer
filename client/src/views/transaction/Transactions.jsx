@@ -6,13 +6,15 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      records: parse(),
+      records: null,
     };
+    this.state.records = parse();
   }
+
   render() {
     return (<div>
       <h1>Transactions</h1>
-      <button onClick={parse} className="btn btn-default">click me</button>
+      {/* <button onClick={parse} className="btn btn-default">click me</button> */}
 
       <table>
         <tbody>

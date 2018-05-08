@@ -1,10 +1,10 @@
 const csv = window.require('fast-csv');
-
+const _ = require('lodash');
 // const electron = window.require('electron');
 export function parse() {
   const dataarray = [];
   csv
-    .fromPath('client/src/excels/export1.csv')
+    .fromPath('client/src/excels/export1.csv', { headers: true, objectMode: true })
     .on('data', (data) => {
       dataarray.push(data);
       // console.log(data);
@@ -13,6 +13,11 @@ export function parse() {
       console.log('done');
     });
   console.log(dataarray);
+  const pannekoek = _.chain(dataarray)
+    .groupBy(x => x.tegennaam)
+    .map((value, key) => ({ name: key, transactions: value }))
+    .value();
+  console.log(pannekoek);
   return dataarray;
 }
 
