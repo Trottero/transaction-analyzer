@@ -3,4 +3,4 @@
 .vscode
 client/dist/
 build/
-client/src/excels/
+client/src/excels/export1.csv

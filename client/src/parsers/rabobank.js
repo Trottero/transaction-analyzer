@@ -1,10 +1,11 @@
 const csv = window.require('fast-csv');
 const _ = require('lodash');
-// const electron = window.require('electron');
+
 export function parse() {
+  // create two different types of arrays
   const dataarray = [];
   csv
-    .fromPath('client/src/excels/export1.csv', { headers: true, objectMode: true })
+    .fromPath('client/src/excels/test.csv', { headers: true, objectMode: true })
     .on('data', (data) => {
       dataarray.push(data);
       // console.log(data);
@@ -12,12 +13,21 @@ export function parse() {
     .on('end', () => {
       console.log('done');
     });
+  const chocolade = [{ color: 'blue', naam: 'blue color 1' }, { color: 'yellow', naam: 'yellow color 1' }, { color: 'blue', naam: 'blue color 2' }];
+
+  // print them both to make sure they are the same format
   console.log(dataarray);
-  const pannekoek = _.chain(dataarray)
-    .groupBy(x => x.tegennaam)
-    .map((value, key) => ({ name: key, transactions: value }))
-    .value();
+  console.log(chocolade);
+
+  // groupbys, one returns a proper object the other one is messed up
+  const pannekoek = _.groupBy(dataarray, 'color');
+  const banaan = _.groupBy(chocolade, 'color');
+
+  // print results
   console.log(pannekoek);
+  console.log(banaan);
+
+  // ???
   return dataarray;
 }
 
