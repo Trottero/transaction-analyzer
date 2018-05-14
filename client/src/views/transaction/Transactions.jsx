@@ -6,19 +6,29 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      records: null,
+      records: ['s', 'da'],
     };
-    this.state.records = parse();
   }
+  componentDidMount() {
+    this.setState((prevState, props) => ({
+      records: parse(),
+    }));
+  }
+
+  // addshit() {
+  //   setState({
+  //     records: parse(),
+  //   });
+  // }
 
   render() {
     return (<div>
       <h1>Transactions</h1>
-      {/* <button onClick={parse} className="btn btn-default">click me</button> */}
+      {/* <button onClick={this.addshit} className="btn btn-default">click me</button> */}
 
       <table>
         <tbody>
-          {this.state.records.map(record => (<tr>
+          {this.state.records.map(record => (<tr key={record.toString()}>
             <td>
               {record[4]}
             </td>
