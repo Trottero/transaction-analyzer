@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { parse } from '../../parsers/rabobank';
+
+const _ = require('lodash');
 
 class Transactions extends React.Component {
   constructor(props) {
@@ -9,42 +10,59 @@ class Transactions extends React.Component {
       records: ['s', 'da'],
     };
   }
+
   componentDidMount() {
-    this.setState((prevState, props) => ({
-      records: parse(),
-    }));
+    parse(this.aggregrate);
+  }
+  // parse() {
+  //   const dataarray = [];
+  //   csv
+  //     .fromPath('client/src/excels/test.csv', { headers: true, objectMode: true })
+  //     .on('data', (data) => {
+  //       dataarray.push(data);
+  //       // console.log(data);
+  //     })
+  //     .on('end', () => {
+  //       const pannekoek = _.groupBy(dataarray, 'color');
+  //       const result = Object.keys(pannekoek)
+  //         .map(key => [(key), pannekoek[key]])
+  //         .map(key => ({ color: key[0], total: _.sumBy(key[1], O => Number(O.numbervalue)) }));
+  //       console.log(result);
+  //       this.setState({
+  //         records: result,
+  //       });
+  //     });
+  // }
+  aggregrate(dataset) {
+    const pannekoek = _.groupBy(dataset, 'color');
+    const result = Object.keys(pannekoek)
+      .map(key => [(key), pannekoek[key]])
+      .map(key => ({ color: key[0], total: _.sumBy(key[1], O => Number(O.numbervalue)) }));
+    console.log(result);
+    this.setState({
+      records: result,
+    });
   }
 
-  // addshit() {
-  //   setState({
-  //     records: parse(),
-  //   });
-  // }
-
   render() {
-    return (<div>
-      <h1>Transactions</h1>
-      {/* <button onClick={this.addshit} className="btn btn-default">click me</button> */}
+    return (
+      <div>
+        <h1>Transactions</h1>
 
-      <table>
-        <tbody>
-          {this.state.records.map(record => (<tr key={record.toString()}>
-            <td>
-              {record[4]}
-            </td>
-            <td>
-              {record[6]}
-            </td>
-            <td>
-              {record[7]}
-            </td>
-            <td>
-              {record[9]}
-            </td>
-          </tr>))}
-        </tbody>
-      </table>
-    </div>);
+        <table>
+          <tbody>
+            {this.state.records.map(record => (
+              <tr key={record.color}>
+                <td>
+                  {record.color}
+                </td>
+                <td>
+                  {record.total}
+                </td>
+              </tr>))}
+          </tbody>
+        </table>
+      </div>);
   }
 }
 
