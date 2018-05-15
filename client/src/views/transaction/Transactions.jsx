@@ -12,34 +12,16 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    parse(this.aggregrate);
+    parse(this, this.aggregrate);
   }
-  // parse() {
-  //   const dataarray = [];
-  //   csv
-  //     .fromPath('client/src/excels/test.csv', { headers: true, objectMode: true })
-  //     .on('data', (data) => {
-  //       dataarray.push(data);
-  //       // console.log(data);
-  //     })
-  //     .on('end', () => {
-  //       const pannekoek = _.groupBy(dataarray, 'color');
-  //       const result = Object.keys(pannekoek)
-  //         .map(key => [(key), pannekoek[key]])
-  //         .map(key => ({ color: key[0], total: _.sumBy(key[1], O => Number(O.numbervalue)) }));
-  //       console.log(result);
-  //       this.setState({
-  //         records: result,
-  //       });
-  //     });
-  // }
-  aggregrate(dataset) {
-    const pannekoek = _.groupBy(dataset, 'color');
+
+  aggregrate(componentToUpdate, dataset) {
+    const pannekoek = _.groupBy(dataset, 'tegennaam');
     const result = Object.keys(pannekoek)
       .map(key => [(key), pannekoek[key]])
-      .map(key => ({ color: key[0], total: _.sumBy(key[1], O => Number(O.numbervalue)) }));
+      .map(key => ({ ontvanger: key[0], total: _.sumBy(key[1], O => Number(O.Bedrag.replace(/,/g, '.'))) }));
     console.log(result);
-    this.setState({
+    componentToUpdate.setState({
       records: result,
     });
   }
@@ -49,12 +31,18 @@ class Transactions extends React.Component {
       <div>
         <h1>Transactions</h1>
 
-        <table>
+        <table className="table">
+          <thead className="thead-light">
+            <tr>
+              <th>Ontvanger</th>
+              <th>Totaal besteed</th>
+            </tr>
+          </thead>
           <tbody>
             {this.state.records.map(record => (
-              <tr key={record.color}>
+              <tr key={record.ontvanger}>
                 <td>
-                  {record.color}
+                  {record.ontvanger}
                 </td>
                 <td>
                   {record.total}
