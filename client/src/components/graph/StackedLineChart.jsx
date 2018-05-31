@@ -16,6 +16,9 @@ class StackedLineChart extends React.Component {
   componentDidMount() {
     this.generateGraph();
   }
+  componentDidUpdate() {
+    this.generateGraph();
+  }
 
   generateGraph() {
     const ctx = document.getElementById(this.props.identifier);

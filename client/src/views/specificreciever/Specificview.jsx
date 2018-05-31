@@ -38,9 +38,6 @@ class Specificview extends React.Component {
     this.setState({
       baseData: result,
     });
-
-    console.log(this.state.baseData[0].values.map(record => record.total));
-    console.log(this.state.baseData[0].values.map(thing => thing.date));
   }
 
   render() {
