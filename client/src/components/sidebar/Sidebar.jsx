@@ -29,7 +29,7 @@ const Sidebar = () => (
           <Link to="/transactions" href="/transactions" className={classes.title}>Transactions</Link>
         </li>
         <li>
-          <a href="/">Contact</a>
+          <Link to="/specificview" href="/specificview" className={classes.title}>Stacked Graphs</Link>
         </li>
       </ul>
     </nav>

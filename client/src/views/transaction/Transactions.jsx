@@ -21,7 +21,6 @@ class Transactions extends React.Component {
     let result = gbu.groupByMonth(dataset);
     result = gbu.groupByReciever(result);
     result = result.map(record => ({ date: record.date, values: _.orderBy(record.values, ['total'], ['desc']) }));
-    console.log(result);
     this.setState({
       records: result,
     });

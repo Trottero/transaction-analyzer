@@ -28,7 +28,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log('rendered home page');
     return (
       <div>
         <h1>Dashboard</h1>

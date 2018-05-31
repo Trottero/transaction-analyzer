@@ -31,7 +31,12 @@ export function groupByReciever(dataset) {
         .filter(key => key.total < 0)
         .map(key => ({ reciever: key.reciever, total: Number(String(key.total).replace(/-/g, '')) })),
   }));
-
-
   return groupedByReciever;
+}
+
+export function groupByRecieverSimple(dataset) {
+  let groupedset = _.groupBy(dataset, 'reciever');
+  groupedset = Object.keys(groupedset)
+    .map(key => ({ reciever: key, values: groupedset[key] }));
+  return groupedset;
 }
