@@ -5,7 +5,7 @@ import Transactions from '../transaction/Transactions';
 import Specificview from '../specificreciever/Specificview';
 
 const Main = () => (
-  <div className="">
+  <div className="page-wrapper">
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/transactions" component={Transactions} />
@@ -15,4 +15,3 @@ const Main = () => (
 );
 
 export default Main;
-

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'chart.js';
 
-// import classes from './Button.scss';
+import classes from './Button.scss';
 
 class DoughnutGraph extends React.Component {
   constructor(props) {
@@ -33,14 +33,20 @@ class DoughnutGraph extends React.Component {
         }],
       },
       options: {
+        legend: {
+          display: false,
+        },
       },
     });
+  }
+  componentDidUpdate() {
+    // this.generateGraph();
   }
 
   render() {
     console.log('rendered graph component');
     return (
-      <canvas id={this.props.identifier} width="100%" height="700px" />
+      <canvas id={this.props.identifier} width="100%" height="100%" />
     );
   }
 }

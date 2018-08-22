@@ -44,7 +44,7 @@ class Specificview extends React.Component {
     return (
       <div>
         <h1>Trends in expenses</h1>
-        <StackedLineChart identifier="mastergraph" labels={this.state.baseData[0].values.map(thing => thing.date)} data={this.state.baseData[0].values.map(record => record.total)} />
+        <StackedLineChart identifier="mastergraph" labels={this.state.baseData[1].values.map(thing => thing.date)} data={this.state.baseData[1].values.map(record => record.total)} />
       </div>);
   }
 }
