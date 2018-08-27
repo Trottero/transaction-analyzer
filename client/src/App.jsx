@@ -7,7 +7,7 @@ import Main from './views/shared/Main';
 
 const App = ({ store }) => (
   <Provider store={store}>
-    <div className="row">
+    <div>
       <Layout />
       <Main />
     </div>

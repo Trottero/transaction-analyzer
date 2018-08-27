@@ -1,50 +1,60 @@
 import React from 'react';
+import * as ExcelParser from '../../parsers/excelparser';
+import * as gbu from '../../modules/groupby-utils';
 
-import { parse } from '../../parsers/rabobank';
+const _ = require('lodash');
 
 class Transactions extends React.Component {
   constructor(props) {
     super(props);
+    this.aggregrate = this.aggregrate.bind(this);
     this.state = {
-      records: ['s', 'da'],
+      records: [{ values: ['s'] }, { values: ['sa'] }],
     };
   }
+
   componentDidMount() {
-    this.setState((prevState, props) => ({
-      records: parse(),
-    }));
+    ExcelParser.parse(this.aggregrate);
   }
 
-  // addshit() {
-  //   setState({
-  //     records: parse(),
-  //   });
-  // }
+  aggregrate(dataset) {
+    let result = gbu.groupByMonth(dataset);
+    result = gbu.groupByReciever(result);
+    result = result.map(record => ({ date: record.date, values: _.orderBy(record.values, ['total'], ['desc']) }));
+    this.setState({
+      records: result,
+    });
+  }
 
   render() {
-    return (<div>
-      <h1>Transactions</h1>
-      {/* <button onClick={this.addshit} className="btn btn-default">click me</button> */}
+    return (
+      <div>
+        <h1>Transactions</h1>
 
-      <table>
-        <tbody>
-          {this.state.records.map(record => (<tr key={record.toString()}>
-            <td>
-              {record[4]}
-            </td>
-            <td>
-              {record[6]}
-            </td>
-            <td>
-              {record[7]}
-            </td>
-            <td>
-              {record[9]}
-            </td>
-          </tr>))}
-        </tbody>
-      </table>
-    </div>);
+        {this.state.records.map(record => (
+          <table className="table">
+            <thead className="thead-light" key={record.date}>
+              <tr>
+                <th>Ontvanger {record.date}</th>
+                <th>Totaal besteed</th>
+              </tr>
+            </thead>
+            <tbody>
+              {record.values.map(recievers => (
+                <tr key={recievers.reciever + record.date}>
+                  <td>
+                    {recievers.reciever}
+                  </td>
+                  <td>
+                    {recievers.total}
+                  </td>
+                </tr>))
+              }
+            </tbody>
+          </table>
+        ))}
+
+      </div>);
   }
 }
 
