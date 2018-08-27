@@ -55,7 +55,7 @@ class Home extends React.Component {
               <div className="panel-heading">
                 Panel heading
               </div>
-              <div className="panel-body" >
+              <div className="panel-body full-height">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dolor quam, tempus quis tortor facilisis, dictum facilisis ex. Integer nec tempor nunc, eget placerat ex. Nulla ullamcorper consequat diam ut ornare. Etiam lobortis lacus est, at mollis odio lobortis vitae. Donec efficitur metus id eros interdum, ut dapibus ipsum ullamcorper.
               </div>
             </div>

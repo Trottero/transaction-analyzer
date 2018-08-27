@@ -2,18 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'chart.js';
 
-import classes from './Button.scss';
+const Rainbow = require('rainbowvis.js');
 
 class DoughnutGraph extends React.Component {
   constructor(props) {
     super(props);
     this.generateGraph = this.generateGraph.bind(this);
     this.state = {
-      colors: ['#070117', '#0F0230', '#170349', '#1E0462', '#26047A', '#2D0593', '#3506AC', '#3D07C5', '#4208DA', '#4408DC', '#4C09F5 ', '#5D21F7', '#703AF8', '#8151F9', '#936AFA', '#A584FA ', '#B79DFB', '#C8B4FC', '#DACDFD', '#EDE6FE'],
+      // colors: ['#070117', '#0F0230', '#170349', '#1E0462', '#26047A', '#2D0593', '#3506AC', '#3D07C5', '#4208DA', '#4408DC', '#4C09F5 ', '#5D21F7', '#703AF8', '#8151F9', '#936AFA', '#A584FA ', '#B79DFB', '#C8B4FC', '#DACDFD', '#EDE6FE'],
     };
   }
 
   componentDidMount() {
+    // generate colours dynamically
+    const rainbow = new Rainbow();
+    rainbow.setNumberRange(0, this.props.data.length);
+    rainbow.setSpectrum('#d4fce4', '#009b3e');
+    const s = [];
+    for (let i = 1; i <= this.props.data.length; i++) {
+      const hexColour = rainbow.colourAt(i);
+      s.push(`#${hexColour}`);
+    }
+
+    this.setState({
+      colors: s,
+    });
+
     // generate a graph here using the charts.js library
     this.generateGraph();
     console.log('Graph component mounted');
@@ -40,7 +54,7 @@ class DoughnutGraph extends React.Component {
     });
   }
   componentDidUpdate() {
-    // this.generateGraph();
+    this.generateGraph();
   }
 
   render() {
